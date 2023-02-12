@@ -3,10 +3,13 @@ import os,shutil
 from tkinter.messagebox import *
 def build(folder,fwidth,fheight):
     print(os.getcwd())
+    print(os.path.join(os.getcwd(), "output"))
     try:
-        folders = os.listdir("../output")
+        if not os.path.isdir(os.path.join(os.getcwd(), "output")):
+            os.mkdir(os.path.join(os.getcwd(), "output"))
+        folders = os.listdir(os.path.join(os.getcwd(), "output"))
         if folder in folders:
-            shutil.rmtree("output/" + folder)
+            shutil.rmtree(os.path.join(os.getcwd(), "output", folder) )
 
         os.mkdir("output/" + folder)
         file = open("output/{}/main.py".format(folder), "w")
